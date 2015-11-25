@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Masonry/Masonry.h"
 #import "UIView+Category.h"
+#import "SubView.h"
 
 @interface ViewController ()
 {
@@ -16,6 +17,8 @@
     NSBundle    *imageBundle;
     UIImageView *imageView;
 }
+@property (nonatomic, strong) SubView *subView;
+
 @end
 
 @implementation ViewController
@@ -46,6 +49,7 @@
 //        make.left.equalTo(self.view);
 //        make.top.equalTo(self.view);
 //    }];
+    self.subView.backgroundColor = [UIColor purpleColor];
     
     UIProgressView *progress = [[UIProgressView alloc] initWithFrame:CGRectMake(50, 300, width - 100, 10)];
     progress.progress = 0.5;
@@ -73,6 +77,27 @@
     
     imageView.identifier = @"111sss";
     NSLog(@"%@",imageView.identifier);
+    
+    [self.view bringSubviewToFront:progress];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    __weak ViewController *weakSelf = self;
+    [self.subView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(weakSelf.view);
+        make.top.equalTo(weakSelf.view.mas_top).offset(400);
+    }];
+}
+
+- (SubView *)subView
+{
+    if (!_subView) {
+        _subView = [[SubView alloc] init];
+        [self.view addSubview:_subView];
+    }
+    return _subView;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

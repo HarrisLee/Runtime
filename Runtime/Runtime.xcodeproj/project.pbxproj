@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		44457B591BF4288500FC76E9 /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 44457B581BF4288500FC76E9 /* UIView+Category.m */; };
+		444F5EA61C05B8D800FCC635 /* SubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F5EA51C05B8D800FCC635 /* SubView.m */; };
 		44EE83361BE84E39005094BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EE83351BE84E39005094BE /* main.m */; };
 		44EE83391BE84E39005094BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EE83381BE84E39005094BE /* AppDelegate.m */; };
 		44EE833C1BE84E39005094BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EE833B1BE84E39005094BE /* ViewController.m */; };
@@ -39,6 +40,8 @@
 /* Begin PBXFileReference section */
 		44457B571BF4288500FC76E9 /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
 		44457B581BF4288500FC76E9 /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
+		444F5EA41C05B8D800FCC635 /* SubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubView.h; sourceTree = "<group>"; };
+		444F5EA51C05B8D800FCC635 /* SubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubView.m; sourceTree = "<group>"; };
 		44EE83311BE84E39005094BE /* Runtime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runtime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44EE83351BE84E39005094BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		44EE83371BE84E39005094BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 				44EE83341BE84E39005094BE /* Supporting Files */,
 				44457B571BF4288500FC76E9 /* UIView+Category.h */,
 				44457B581BF4288500FC76E9 /* UIView+Category.m */,
+				444F5EA41C05B8D800FCC635 /* SubView.h */,
+				444F5EA51C05B8D800FCC635 /* SubView.m */,
 			);
 			path = Runtime;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 				44EE83751BE89AA5005094BE /* MASViewAttribute.m in Sources */,
 				44EE83721BE89AA5005094BE /* MASConstraint.m in Sources */,
 				44EE83731BE89AA5005094BE /* MASConstraintMaker.m in Sources */,
+				444F5EA61C05B8D800FCC635 /* SubView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
