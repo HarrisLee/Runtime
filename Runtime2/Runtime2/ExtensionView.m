@@ -21,20 +21,29 @@
 }
 
 //这种定义无法实现IMP指针转换,必须以C/C++的形式定义方法才可以
-//- (void)showBView
-//{
-//    NSLog(@"show B View");
-//}
-
-void showBView(void)
+/**! 上面的说法错了！   可以通过 @selector获取SEL，  
+ 然后通过class_getInstanceMethod 获取Method，
+ 最后通过method_getImplementation来获取IMP指针，
+ 
+ *******所以上面的两种方法都是可以实现IMP指针替换的。*******
+ */
+- (void)showBView
 {
     NSLog(@"show B View");
 }
 
+//void showBView(void)
+//{
+//    NSLog(@"show B View");
+//}
+
 /*! 替换showAView方法为showBView*/
 - (void)replaceAViewToBView
 {
-    class_replaceMethod([self class], @selector(showAView), (IMP)showBView, NULL);
+    SEL sel = @selector(showBView);
+    Method method = class_getInstanceMethod([self class], sel);
+    class_replaceMethod([self class], @selector(showAView), method_getImplementation(method), NULL);
+//    class_replaceMethod([self class], @selector(showAView), (IMP)showBView, NULL);
 }
 
 
