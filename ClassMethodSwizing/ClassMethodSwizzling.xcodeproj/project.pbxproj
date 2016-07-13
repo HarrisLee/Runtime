@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44962C7D1D35DAE50018A340 /* NSMutableArray+SafeMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 44962C7C1D35DAE50018A340 /* NSMutableArray+SafeMethod.m */; };
+		44962C801D35DDF30018A340 /* NSMutableDictionary+SafeMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 44962C7F1D35DDF30018A340 /* NSMutableDictionary+SafeMethod.m */; };
 		44F6FC7D1D2E39F500BCE1E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F6FC7C1D2E39F500BCE1E0 /* main.m */; };
 		44F6FC801D2E39F500BCE1E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F6FC7F1D2E39F500BCE1E0 /* AppDelegate.m */; };
 		44F6FC831D2E39F500BCE1E0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F6FC821D2E39F500BCE1E0 /* ViewController.m */; };
@@ -18,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44962C7B1D35DAE50018A340 /* NSMutableArray+SafeMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SafeMethod.h"; sourceTree = "<group>"; };
+		44962C7C1D35DAE50018A340 /* NSMutableArray+SafeMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SafeMethod.m"; sourceTree = "<group>"; };
+		44962C7E1D35DDF30018A340 /* NSMutableDictionary+SafeMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+SafeMethod.h"; sourceTree = "<group>"; };
+		44962C7F1D35DDF30018A340 /* NSMutableDictionary+SafeMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+SafeMethod.m"; sourceTree = "<group>"; };
 		44F6FC781D2E39F500BCE1E0 /* ClassMethodSwizzling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassMethodSwizzling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F6FC7C1D2E39F500BCE1E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		44F6FC7E1D2E39F500BCE1E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,6 +83,10 @@
 				44F6FC931D2E3A1200BCE1E0 /* Person.m */,
 				44F6FC981D2E3C0200BCE1E0 /* Person+Proxy.h */,
 				44F6FC991D2E3C0200BCE1E0 /* Person+Proxy.m */,
+				44962C7B1D35DAE50018A340 /* NSMutableArray+SafeMethod.h */,
+				44962C7C1D35DAE50018A340 /* NSMutableArray+SafeMethod.m */,
+				44962C7E1D35DDF30018A340 /* NSMutableDictionary+SafeMethod.h */,
+				44962C7F1D35DDF30018A340 /* NSMutableDictionary+SafeMethod.m */,
 			);
 			path = ClassMethodSwizing;
 			sourceTree = "<group>";
@@ -165,6 +175,8 @@
 				44F6FC941D2E3A1200BCE1E0 /* Person.m in Sources */,
 				44F6FC9A1D2E3C0200BCE1E0 /* Person+Proxy.m in Sources */,
 				44F6FC7D1D2E39F500BCE1E0 /* main.m in Sources */,
+				44962C801D35DDF30018A340 /* NSMutableDictionary+SafeMethod.m in Sources */,
+				44962C7D1D35DAE50018A340 /* NSMutableArray+SafeMethod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

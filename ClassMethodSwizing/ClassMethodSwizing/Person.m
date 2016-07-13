@@ -15,4 +15,9 @@
     NSLog(@"orignal Name");
 }
 
+- (void)showName
+{
+    NSLog(@"orignal Name");
+}
+
 @end

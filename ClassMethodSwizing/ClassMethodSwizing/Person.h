@@ -14,4 +14,6 @@
 
 + (void)showName;
 
+- (void)showName;
+
 @end

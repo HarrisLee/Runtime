@@ -22,6 +22,16 @@
     [Person showName];
     
     [[Person new] performSelector:@selector(showName)];
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [array objectAtIndex:1];
+    [array insertObject:@"你好" atIndex:0];
+    NSLog(@"%@",array);
+    
+    
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:@"value1" forKey:@"key1"];
+    NSLog(@"%@",dic);
 }
 
 - (void)didReceiveMemoryWarning {
