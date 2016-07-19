@@ -9,7 +9,7 @@
 #import "JPLoader.h"
 #import "JPEngine.h"
 #import "ZipArchive.h"
-#import "RSA.h"
+#import "RSAObject.h"
 #import <CommonCrypto/CommonDigest.h>
 
 #define kJSPatchVersion(appVersion)   [NSString stringWithFormat:@"JSPatchVersion_%@", appVersion]
@@ -143,7 +143,7 @@ void (^JPLogger)(NSString *log);
             
             // 2. decrypt and verify md5 file
             if (!isFailed) {
-                NSData *md5Data = [RSA decryptData:[NSData dataWithContentsOfFile:keyFilePath] publicKey:publicKey];
+                NSData *md5Data = [RSAObject decryptData:[NSData dataWithContentsOfFile:keyFilePath] publicKey:publicKey];
                 NSString *decryptMD5 = [[NSString alloc] initWithData:md5Data encoding:NSUTF8StringEncoding];
                 NSString *md5 = [self fileMD5:scriptZipFilePath];
                 if (![decryptMD5 isEqualToString:md5]) {

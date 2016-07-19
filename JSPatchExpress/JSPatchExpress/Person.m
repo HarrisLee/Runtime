@@ -10,7 +10,23 @@
 #import <objc/runtime.h>
 
 
+@interface Person ()
+{
+    NSString *school;
+}
+@end
+
 @implementation Person
+
+- (NSString *)showSchool
+{
+    return school;
+}
+
+- (void)setSchoolName:(NSString *)name
+{
+    school = name;
+}
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {

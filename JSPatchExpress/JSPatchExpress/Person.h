@@ -10,7 +10,11 @@
 
 @interface Person : NSObject<NSCopying>
 
-@property (nonatomic,strong) NSString *name;
+@property (nonatomic,copy) NSString *name;
+
+- (NSString *)showSchool;
+
+- (void)setSchoolName:(NSString *)name;
 
 - (NSString *)sayMessage:(NSString *)message;
 

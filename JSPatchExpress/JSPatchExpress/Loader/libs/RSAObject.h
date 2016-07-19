@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RSA : NSObject
+@interface RSAObject : NSObject
 
 // return base64 encoded string
 + (NSString *)encryptString:(NSString *)str publicKey:(NSString *)pubKey;

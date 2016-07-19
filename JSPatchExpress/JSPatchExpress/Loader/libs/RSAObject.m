@@ -3,10 +3,10 @@
  @link: https://github.com/ideawu/Objective-C-RSA
  */
 
-#import "RSA.h"
+#import "RSAObject.h"
 #import <Security/Security.h>
 
-@implementation RSA
+@implementation RSAObject
 
 
 static NSString *base64_encode_data(NSData *data){
@@ -70,7 +70,7 @@ static NSData *base64_decode(NSString *str){
     
     // This will be base64 encoded, decode it.
     NSData *data = base64_decode(key);
-    data = [RSA stripPublicKeyHeader:data];
+    data = [RSAObject stripPublicKeyHeader:data];
     if(!data){
         return nil;
     }
@@ -116,7 +116,7 @@ static NSData *base64_decode(NSString *str){
 }
 
 + (NSString *)encryptString:(NSString *)str publicKey:(NSString *)pubKey{
-    NSData *data = [RSA encryptData:[str dataUsingEncoding:NSUTF8StringEncoding] publicKey:pubKey];
+    NSData *data = [RSAObject encryptData:[str dataUsingEncoding:NSUTF8StringEncoding] publicKey:pubKey];
     NSString *ret = base64_encode_data(data);
     return ret;
 }
@@ -125,7 +125,7 @@ static NSData *base64_decode(NSString *str){
     if(!data || !pubKey){
         return nil;
     }
-    SecKeyRef keyRef = [RSA addPublicKey:pubKey];
+    SecKeyRef keyRef = [RSAObject addPublicKey:pubKey];
     if(!keyRef){
         return nil;
     }
@@ -161,7 +161,7 @@ static NSData *base64_decode(NSString *str){
 
 + (NSString *)decryptString:(NSString *)str publicKey:(NSString *)pubKey{
     NSData *data = [[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    data = [RSA decryptData:data publicKey:pubKey];
+    data = [RSAObject decryptData:data publicKey:pubKey];
     NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return ret;
 }
@@ -170,7 +170,7 @@ static NSData *base64_decode(NSString *str){
     if(!data || !pubKey){
         return nil;
     }
-    SecKeyRef keyRef = [RSA addPublicKey:pubKey];
+    SecKeyRef keyRef = [RSAObject addPublicKey:pubKey];
     if(!keyRef){
         return nil;
     }
