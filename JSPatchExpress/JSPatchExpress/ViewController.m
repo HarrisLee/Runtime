@@ -90,13 +90,17 @@
     //    [p1 sayMessage:@"hello jspatch!"];
     Person *p11 = [[Person alloc] init];
     p11.name = @"校门11";
-    [p1 setSchoolName:@"无尽1"];
     void (^showNameBlock)(NSString *name) = ^(NSString *name){
-        NSLog(@"%p",p1.name);
+        NSLog(@"%p  ----   %p   %@",p1,p1.name,p1.name);
     };
     
-    [p1 setSchoolName:@"无尽"];
+//    p1 = [p11 copy];
+    
+    p1.name = @"小萌1";
     showNameBlock(@"1");
+    p1.name = @"小萌2";
+    showNameBlock(@"1");
+    
     
     // Create NSData object
     NSData *nsdata = [@"iOS Developer Tips encoded in Base64" dataUsingEncoding:NSUTF8StringEncoding];
@@ -135,6 +139,12 @@
     NSLog(@"%@",decryptString);
     [self sayHssss:@"1111"];
     
+
+    NSData *dat = [[NSData alloc] initWithData:[@"18fe34999620" dataUsingEncoding:NSUTF8StringEncoding]];
+    NSLog(@"%@",[dat description]);
+    Byte *byte = (Byte *)[dat bytes];
+    NSLog(@"%@",[NSString stringWithFormat:@"%02x:%02x:%02x:%02x:%02x:%02x",byte[1],byte[2],byte[3],byte[4],byte[5],byte[0]]);
+    NSLog(@"%@",[NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x",byte[1],byte[2],byte[3],byte[4],byte[5],byte[0]]);
 }
 
 - (void)sayHssss:(NSString *)name
