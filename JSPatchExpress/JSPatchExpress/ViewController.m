@@ -49,14 +49,37 @@
     button.titleLabel.font = [UIFont systemFontOfSize:13.0 weight:1.0];
     [button setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(tapMe:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+//    [self.view addSubview:button];
     
     __weak ViewController *slf = self;
+    
+    
+    UIView *views = [[UIView alloc] init];
+    views.backgroundColor = [UIColor brownColor];
+    [self.view addSubview:views];
+    [views mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(slf.view.mas_left);
+        make.centerX.centerY.equalTo(slf.view);
+        make.width.height.mas_equalTo(400);
+    }];
+    
+    [views addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(slf.view.mas_top).offset(200);
-        make.left.equalTo(slf.view.mas_left).offset(50);
+        make.top.equalTo(views.mas_top).offset(200);
+        make.left.equalTo(views.mas_left).offset(50);
         make.width.height.equalTo(@100);
     }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [button mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(views.mas_top).offset(300);
+            make.left.equalTo(views.mas_left).offset(150);
+            make.width.height.equalTo(@200);
+        }];
+    });
+    
+    
+    
     
     //    NSURL *url = [NSURL URLWithString:@"http://free2.macx.cn:8281/tools/photo/BalsamiqMockups342.dmg"];
     //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];

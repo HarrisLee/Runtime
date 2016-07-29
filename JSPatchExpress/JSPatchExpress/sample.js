@@ -14,11 +14,11 @@ defineClass('ViewController : UIViewController <UIAlertViewDelegate>' ,{
                            console.log("dispatch_after is calling");
                            })
             
-            var slf = self;
-            dispatch_after(3,function(){
-                           var tables = JPTableViewController.alloc().init();
-                           slf.navigationController().pushViewController_animated(tables,YES);
-                           })
+//            var slf = self;
+//            dispatch_after(3,function(){
+//                           var tables = JPTableViewController.alloc().init();
+//                           slf.navigationController().pushViewController_animated(tables,YES);
+//                           })
             
             var redView = require('UIView').alloc().init();
             var color = require('UIColor').redColor();

@@ -59,6 +59,8 @@
 		4437E5AC1D2BA36500A653FE /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4437E5A81D2B9F0100A653FE /* libz.1.tbd */; };
 		4437E5AE1D2BB59E00A653FE /* aboutIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4437E5AD1D2BB59E00A653FE /* aboutIcon@3x.png */; };
 		445078DA1D2608A20004B7CC /* JSDemo.js in Resources */ = {isa = PBXBuildFile; fileRef = 445078D91D2608A20004B7CC /* JSDemo.js */; };
+		445EB67C1D499D35000F93BD /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 445EB67B1D499D35000F93BD /* main.js */; };
+		445EB6801D49B303000F93BD /* key in Resources */ = {isa = PBXBuildFile; fileRef = 445EB67F1D49B303000F93BD /* key */; };
 		4475CEA11D2D0587003F2CEC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4475CEA01D2D0587003F2CEC /* CoreTelephony.framework */; };
 		44C1CD371D2F865B003FEE07 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C1CD1F1D2F865B003FEE07 /* MASCompositeConstraint.m */; };
 		44C1CD381D2F865B003FEE07 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C1CD221D2F865B003FEE07 /* MASConstraint.m */; };
@@ -179,6 +181,8 @@
 		4437E5AA1D2BA35100A653FE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		4437E5AD1D2BB59E00A653FE /* aboutIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aboutIcon@3x.png"; sourceTree = "<group>"; };
 		445078D91D2608A20004B7CC /* JSDemo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = JSDemo.js; sourceTree = "<group>"; };
+		445EB67B1D499D35000F93BD /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
+		445EB67F1D49B303000F93BD /* key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = key; sourceTree = "<group>"; };
 		4475CEA01D2D0587003F2CEC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		44C1CD1E1D2F865B003FEE07 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		44C1CD1F1D2F865B003FEE07 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
@@ -348,6 +352,8 @@
 				4432D4581D2E0180003D118E /* Person.h */,
 				4432D4591D2E0180003D118E /* Person.m */,
 				44F6FC6D1D2E335700BCE1E0 /* person.js */,
+				445EB67B1D499D35000F93BD /* main.js */,
+				445EB67F1D49B303000F93BD /* key */,
 			);
 			path = JSPatchExpress;
 			sourceTree = "<group>";
@@ -804,12 +810,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				445EB6801D49B303000F93BD /* key in Resources */,
 				44233E661D24CF3300732354 /* JSPatch.js in Resources */,
 				44233E551D24CAA000732354 /* Assets.xcassets in Resources */,
 				4437E5AE1D2BB59E00A653FE /* aboutIcon@3x.png in Resources */,
 				44F6FC6E1D2E335700BCE1E0 /* person.js in Resources */,
 				4437E5A71D2B9EBE00A653FE /* packer.php in Resources */,
 				44233E6A1D24D03D00732354 /* sample.js in Resources */,
+				445EB67C1D499D35000F93BD /* main.js in Resources */,
 				445078DA1D2608A20004B7CC /* JSDemo.js in Resources */,
 				44233E6C1D25011500732354 /* Demo.js in Resources */,
 			);
