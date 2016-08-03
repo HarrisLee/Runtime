@@ -88,6 +88,7 @@
     [self.subView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(weakSelf.view);
         make.top.equalTo(weakSelf.view.mas_top).offset(400);
+        make.height.equalTo(weakSelf.view.mas_height).dividedBy(4);
     }];
 }
 
