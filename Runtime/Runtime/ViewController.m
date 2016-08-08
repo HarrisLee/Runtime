@@ -86,9 +86,9 @@
     [super viewWillLayoutSubviews];
     __weak ViewController *weakSelf = self;
     [self.subView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(weakSelf.view);
-        make.top.equalTo(weakSelf.view.mas_top).offset(400);
+        make.width.equalTo(weakSelf.view).dividedBy(2);
         make.height.equalTo(weakSelf.view.mas_height).dividedBy(4);
+        make.center.equalTo(weakSelf.view).centerOffset(CGPointMake(100, 100)).priorityHigh();
     }];
 }
 

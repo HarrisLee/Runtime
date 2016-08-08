@@ -27,6 +27,11 @@
     [dic setObject:nil forKey:@"key"];
     
     
+    NSMutableString *name = [[NSMutableString alloc] initWithString:@"小妞"];
+    name = [NSNull null];
+    NSMutableString *name2 = [[NSMutableString alloc] initWithString:@"小妞"];
+    [name2 appendString:@""];
+    NSLog(@"%@",[name isEqual:name2] ? @"YES":@"NO");
     
 }
 
