@@ -3,12 +3,14 @@ include('person.js');
 require('JPEngine').addExtensions(['JPCFunction']);
 defineCFunction("malloc", "void *, size_t");
 defineCFunction("NSClassFromString", "Class, NSString *");
-
+defineCFunction("showHello","void *, NSString *");
 
 defineClass('ViewController : UIViewController <UIAlertViewDelegate>' ,{
             viewDidLoad:function(){
             self.ORIGviewDidLoad();
             self.setProp_forKey("JSPatches","data");
+            
+            showHello("111111 hello");
             
             dispatch_after(1.0,function(){
                            console.log("dispatch_after is calling");

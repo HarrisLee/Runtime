@@ -26,6 +26,10 @@
 
 @implementation ViewController
 
+void showHello(NSString *msg)
+{
+    NSLog(@"%@",msg);
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -53,6 +57,7 @@
     
     __weak ViewController *slf = self;
     
+    showHello(@"name");
     
     UIView *views = [[UIView alloc] init];
     views.backgroundColor = [UIColor brownColor];
@@ -60,7 +65,6 @@
     [views mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(slf.view.mas_left);
         make.centerX.centerY.equalTo(slf.view);
-        make.width.height.mas_equalTo(400);
     }];
     
     [views addSubview:button];
@@ -70,6 +74,8 @@
         make.width.height.equalTo(@100);
     }];
     
+    MASAttachKeys(self.view,views,button);
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [button mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(views.mas_top).offset(300);
@@ -78,7 +84,7 @@
         }];
     });
     
-    
+
     
     
     //    NSURL *url = [NSURL URLWithString:@"http://free2.macx.cn:8281/tools/photo/BalsamiqMockups342.dmg"];
