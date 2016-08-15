@@ -9,17 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "Person.h"
 
+//1.第一种定义结构体方法  支持JSPatch，且名称为JSPDemo
 //struct JSPDemo{
 //    CGFloat Jsp;
 //    CGFloat Demo;
 //};
 //typedef struct JSPDemo JSPDemo;
 
+//2.第二种定义结构体方法  支持JSPatch,且名称为JSPDemo
 typedef struct JSPDemo{
     CGFloat Jsp;
     CGFloat Demo;
 }JSP1Demo;
 
+//3.第3种定义结构体方法  不支持JSPatch
 //typedef struct{
 //    CGFloat Jsp;
 //    CGFloat Demo;

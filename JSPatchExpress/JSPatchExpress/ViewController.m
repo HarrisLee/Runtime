@@ -15,10 +15,7 @@
 
 #define kRegisterRSAPublicKey   @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCuqGjycrqdOTBsvNOyByH9Jv55YyLJYdxvf7m5KjuoE1FvC145blT5/hUG/EVtYkGzkgyCzsUxF7V3c0Gj5CSaOG2hWjQ4pnh/j75xCkRTHVe3KdCsmTTzWxU03LWx66DPvri4X/wdLdMGc0UkU1rNQ7BsOD7iDD8Y9j55zj9JkwIDAQAB"
 
-
 #define kRegisterRSAPrivateKey  @"MIICXgIBAAKBgQCuqGjycrqdOTBsvNOyByH9Jv55YyLJYdxvf7m5KjuoE1FvC145blT5/hUG/EVtYkGzkgyCzsUxF7V3c0Gj5CSaOG2hWjQ4pnh/j75xCkRTHVe3KdCsmTTzWxU03LWx66DPvri4X/wdLdMGc0UkU1rNQ7BsOD7iDD8Y9j55zj9JkwIDAQABAoGAFwU/f+U7T4nAJjTlOivSgQlotRsp9J0fbtrI4ez9G/Qf4aD/9FXkgWbJ4rfRds9ilYaEe6FBQG09j9bzKeTiJfHXh5xxkyJ5T1aPOZ2nsudLgZPONo78R8oItQf0rQYbFtVNo+G6rwX4iIZ18zQBLlxM/7hW5mLfeke1VzASFiECQQDVpOb75wfF0gVsTgTSwuZ7nduMA4gf4+m/l9sILT8ce4AvjI53a4lDTC/fjx1XboAg9o8TEUEfF8qRVPJFPHWLAkEA0UjVR3I/wO0TqMli4odGm7owCqH7IAbOB1oNSgVOv36MTWy8cy//84yh2pZirkOZfp499SYUVm0np15UdZdNGQJBAKFa9x0/ou40LeZbkmb/zoWEduFrdW7oeo06irHFQooneGvxE1R8QmIyc2G8PCPhkCHVNb/n4zAxjstuxb+m5vsCQQCwOTPdxUYJnZdAONMbC+1Yk56AVYSvows5BYrLGU0F0fkx+K12EKTk3zYqaRcOxb0p8PUax8W4QJFzTOqxWYWBAkEAhOlTMyotjXMS5V/MdGsBWLxI+CsFiqiGSm1Pa70U/crbNELosgoHVYcRYNqIOi6arZaI0dsRAtm+lXLJHHgykw=="
-
-
 
 
 @interface ViewController ()
@@ -99,10 +96,7 @@ void showHello(NSString *msg)
 //            make.width.height.equalTo(@200);
 //        }];
 //    });
-    
-    
-    
-    
+
     //    NSURL *url = [NSURL URLWithString:@"http://free2.macx.cn:8281/tools/photo/BalsamiqMockups342.dmg"];
     //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     //    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
