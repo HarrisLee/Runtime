@@ -18,13 +18,18 @@
 @end
 
 @implementation AppDelegate
-
+//#define TRANSFORM_DEFINE @{ \
+//@"name": @"JSPDemo",  \
+//@"types": @"FF",    \
+//@"keys": @[@"Jsp", @"Demo"]    \
+//}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    //1.开始启动JPEngine 加载JS
     [JPEngine startEngine];
     
+    //1).第一种加载JS的方法，但是一般用不到
 //    [JPEngine evaluateScript:@"\
 //     var alertView = require('UIAlertView').alloc().init();\
 //     alertView.setTitle('Alert');\
@@ -33,19 +38,30 @@
 //     alertView.show(); \
 //     "];
     
-//    [JPEngine addExtensions:@[@"JPInclude", @"JPCGTransform"]];
+    //若程序需要用到一些扩展，如结构体,CA，CG 则需要使用extension库里面的文件
+    [JPEngine addExtensions:@[@"JPInclude", @"JPCGTransform",@"JPCGGeometry"]];
     
-    NSString *sourcePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"JSDemo.js"];
+//    [JPEngine defineStruct:TRANSFORM_DEFINE];
     
-     NSLog(@"%@",[JPLoader fileMD5:sourcePath]);
+    [JPEngine defineStruct:@{
+                             @"name":@"JSPDemo",
+                             @"types":@"FF",
+                             @"keys":@[@"Jsp",@"Demo"]}];
     
-    
+    NSString *sourcePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Demo.js"];
+    NSLog(@"%@",[JPLoader fileMD5:sourcePath]);
     [JPEngine evaluateScriptWithPath:sourcePath];
     
+    //获取文件的MD5值
     NSString *sourcePath1 = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"sample.js"];
     NSLog(@"%@",[JPLoader fileMD5:sourcePath1]);
+    
+//    main.js里面include其它文件，并未执行的解决方法
+//    include必须用到evaluateScriptWithPath， evaluateScript则只能实现单个文件的使用
+    //2).第二种加载JS的方法，推荐使用。  可以用这方法来进行模块开发
     [JPEngine evaluateScriptWithPath:sourcePath1];
     
+    //3).第三种加载JS的方法
 //    NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"Demo" ofType:@"js"];
 //    NSString *script = [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:nil];
 //    [JPEngine evaluateScript:script];

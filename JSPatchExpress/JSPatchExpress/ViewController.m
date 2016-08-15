@@ -18,6 +18,9 @@
 
 #define kRegisterRSAPrivateKey  @"MIICXgIBAAKBgQCuqGjycrqdOTBsvNOyByH9Jv55YyLJYdxvf7m5KjuoE1FvC145blT5/hUG/EVtYkGzkgyCzsUxF7V3c0Gj5CSaOG2hWjQ4pnh/j75xCkRTHVe3KdCsmTTzWxU03LWx66DPvri4X/wdLdMGc0UkU1rNQ7BsOD7iDD8Y9j55zj9JkwIDAQABAoGAFwU/f+U7T4nAJjTlOivSgQlotRsp9J0fbtrI4ez9G/Qf4aD/9FXkgWbJ4rfRds9ilYaEe6FBQG09j9bzKeTiJfHXh5xxkyJ5T1aPOZ2nsudLgZPONo78R8oItQf0rQYbFtVNo+G6rwX4iIZ18zQBLlxM/7hW5mLfeke1VzASFiECQQDVpOb75wfF0gVsTgTSwuZ7nduMA4gf4+m/l9sILT8ce4AvjI53a4lDTC/fjx1XboAg9o8TEUEfF8qRVPJFPHWLAkEA0UjVR3I/wO0TqMli4odGm7owCqH7IAbOB1oNSgVOv36MTWy8cy//84yh2pZirkOZfp499SYUVm0np15UdZdNGQJBAKFa9x0/ou40LeZbkmb/zoWEduFrdW7oeo06irHFQooneGvxE1R8QmIyc2G8PCPhkCHVNb/n4zAxjstuxb+m5vsCQQCwOTPdxUYJnZdAONMbC+1Yk56AVYSvows5BYrLGU0F0fkx+K12EKTk3zYqaRcOxb0p8PUax8W4QJFzTOqxWYWBAkEAhOlTMyotjXMS5V/MdGsBWLxI+CsFiqiGSm1Pa70U/crbNELosgoHVYcRYNqIOi6arZaI0dsRAtm+lXLJHHgykw=="
 
+
+
+
 @interface ViewController ()
 {
     NSArray *dataArray;
@@ -25,6 +28,15 @@
 @end
 
 @implementation ViewController
+
+- (JSP1Demo)passS:(JSP1Demo)s
+{
+    NSLog(@"%f,%f",s.Jsp,s.Demo);
+    JSP1Demo str ;
+    str.Jsp = 11.5f;
+    str.Demo = 5.0f;
+    return str;
+}
 
 void showHello(NSString *msg)
 {
@@ -48,43 +60,47 @@ void showHello(NSString *msg)
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
     
+//    self.ase = [[NSMutableArray alloc] init];
+//    [self.ase addObject:@"111"];
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"点击我" forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:13.0 weight:1.0];
     [button setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(tapMe:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:button];
+    [self.view addSubview:button];
     
     __weak ViewController *slf = self;
     
     showHello(@"name");
     
-    UIView *views = [[UIView alloc] init];
+    UIView *views = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     views.backgroundColor = [UIColor brownColor];
     [self.view addSubview:views];
     [views mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(slf.view.mas_left);
         make.centerX.centerY.equalTo(slf.view);
+        make.height.equalTo(@100);
     }];
     
-    [views addSubview:button];
+//    [views addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(views.mas_top).offset(200);
+        make.top.equalTo(views.mas_bottom).offset(10);
         make.left.equalTo(views.mas_left).offset(50);
         make.width.height.equalTo(@100);
     }];
     
     MASAttachKeys(self.view,views,button);
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [button mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(views.mas_top).offset(300);
-            make.left.equalTo(views.mas_left).offset(150);
-            make.width.height.equalTo(@200);
-        }];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [button mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(views.mas_top).offset(300);
+//            make.left.equalTo(views.mas_left).offset(150);
+//            make.width.height.equalTo(@200);
+//        }];
+//    });
     
-
+    
     
     
     //    NSURL *url = [NSURL URLWithString:@"http://free2.macx.cn:8281/tools/photo/BalsamiqMockups342.dmg"];
@@ -176,6 +192,14 @@ void showHello(NSString *msg)
     NSLog(@"%@",[NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x",byte[1],byte[2],byte[3],byte[4],byte[5],byte[0]]);
 }
 
+- (void)showArray:(NSMutableArray *)array
+{
+    NSLog(@"%@",array);
+    [array addObject:@"2"];
+    NSLog(@"%@",array);
+    NSLog(@"%@",[array objectAtIndex:2]);
+}
+
 - (void)sayHssss:(NSString *)name
 {
     [name hash];
@@ -190,19 +214,21 @@ void showHello(NSString *msg)
 
 + (NSMutableArray *)dataMutableArray
 {
-    return [[NSMutableArray alloc] init];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [array addObject:@"1"];
+    return array;
 }
 
 - (void)tapMe:(UIButton *)sender
 {
-    [sender removeFromSuperview];
+//    [sender removeFromSuperview];
     [ViewController showAppName:^(NSString *name, NSString *version) {
         NSLog(@"%@------%@",name,version);
     }];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSLog(@"add button");
-        [self.view addSubview:sender];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        NSLog(@"add button");
+//        [self.view addSubview:sender];
+//    });
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

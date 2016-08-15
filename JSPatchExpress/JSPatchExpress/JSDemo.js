@@ -9,6 +9,7 @@ defineClass('JPViewController', {
             }
             })
 
+//定义一个新的类
 defineClass('JPTableViewController : UITableViewController', ['data'], {
             viewDidLoad: function(){
             self.ORIGviewDidLoad();
