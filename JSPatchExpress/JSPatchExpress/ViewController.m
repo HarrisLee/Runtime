@@ -133,8 +133,6 @@ void showHello(NSString *msg)
         NSLog(@"%p  ----   %p   %@",p1,p1.name,p1.name);
     };
     
-//    p1 = [p11 copy];
-    
     p1.name = @"小萌1";
     showNameBlock(@"1");
     p1.name = @"小萌2";
@@ -178,7 +176,7 @@ void showHello(NSString *msg)
     NSLog(@"%@",decryptString);
     [self sayHssss:@"1111"];
     
-
+    
     NSData *dat = [[NSData alloc] initWithData:[@"18fe34999620" dataUsingEncoding:NSUTF8StringEncoding]];
     NSLog(@"%@",[dat description]);
     Byte *byte = (Byte *)[dat bytes];
@@ -197,7 +195,8 @@ void showHello(NSString *msg)
 - (void)sayHssss:(NSString *)name
 {
     [name hash];
-    //    NSParameterAssert([name isKindOfClass:[NSString class]]);
+    //当参数是NSString时，可以继续向下运行，否则报错
+    NSParameterAssert([name isKindOfClass:[NSString class]]);
     NSLog(@"NSParameterAssert");
 }
 
@@ -215,14 +214,9 @@ void showHello(NSString *msg)
 
 - (void)tapMe:(UIButton *)sender
 {
-//    [sender removeFromSuperview];
     [ViewController showAppName:^(NSString *name, NSString *version) {
         NSLog(@"%@------%@",name,version);
     }];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        NSLog(@"add button");
-//        [self.view addSubview:sender];
-//    });
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

@@ -9,8 +9,8 @@
 #import "JPLoader.h"
 #import "JPEngine.h"
 #import "ZipArchive.h"
-#import "RSAObject.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "BBRSACryptor.h"
 
 #define kJSPatchVersion(appVersion)   [NSString stringWithFormat:@"JSPatchVersion_%@", appVersion]
 
@@ -74,7 +74,7 @@ void (^JPLogger)(NSString *log);
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:scriptPath]) {
         [JPEngine startEngine];
-        [JPEngine addExtensions:@[@"JPLoaderInclude"]];
+        [JPEngine addExtensions:@[@"JPLoaderInclude",@"JPInclude", @"JPCGTransform"]];
         [JPEngine evaluateScriptWithPath:scriptPath];
         if (JPLogger) JPLogger([NSString stringWithFormat:@"JSPatch: evaluated script %@", scriptPath]);
         return YES;
@@ -91,30 +91,24 @@ void (^JPLogger)(NSString *log);
     
     // create url request
     NSString *downloadKey = [NSString stringWithFormat:@"/%@/v%@.zip", appVersion, @(version)];
-    NSURL *downloadURL = [NSURL URLWithString:[rootUrl stringByAppendingString:downloadKey]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:downloadURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20.0];
-    
+    NSURL *downloadURL = [NSURL URLWithString:[rootUrl safeStringByAppendingString:downloadKey]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:downloadURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60.0];
+
     if (JPLogger) JPLogger([NSString stringWithFormat:@"JSPatch: request file %@", downloadURL]);
-    
+
     // create task
     NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
             if (JPLogger) JPLogger([NSString stringWithFormat:@"JSPatch: request file success, data length:%@", @(data.length)]);
-            
-            // script directory
             NSString *scriptDirectory = [self fetchScriptDirectory];
-            
             // temporary files and directories
-            NSString *downloadTmpPath = [NSString stringWithFormat:@"%@patch_%@_%@", NSTemporaryDirectory(), appVersion, @(version)];
+            NSString *downloadTmpPath = [NSString stringWithFormat:@"%@patch_%@_%@.zip", NSTemporaryDirectory(), appVersion, @(version)];
             NSString *unzipVerifyDirectory = [NSString stringWithFormat:@"%@patch_%@_%@_unzipTest/", NSTemporaryDirectory(), appVersion, @(version)];
             NSString *unzipTmpDirectory = [NSString stringWithFormat:@"%@patch_%@_%@_unzip/", NSTemporaryDirectory(), appVersion, @(version)];
-            
             // save data
             [data writeToFile:downloadTmpPath atomically:YES];
-            
             // is the processing flow failed
             BOOL isFailed = NO;
-            
             // 1. unzip encrypted md5 file and script file
             NSString *keyFilePath;
             NSString *scriptZipFilePath;
@@ -127,35 +121,62 @@ void (^JPLogger)(NSString *log);
                     if ([filename isEqualToString:@"key"]) {
                         // encrypted md5 file
                         keyFilePath = filePath;
-                    } else if ([[filename pathExtension] isEqualToString:@"zip"]) {
+                    }
+                    else if ([[filename pathExtension] isEqualToString:@"zip"]) {
                         // script file
                         scriptZipFilePath = filePath;
                     }
                 }
-            } else {
+            }
+            else {
                 if (JPLogger) JPLogger(@"JSPatch: fail to unzip file");
                 isFailed = YES;
-                
                 if (callback) {
                     callback([NSError errorWithDomain:@"org.jspatch" code:JPUpdateErrorUnzipFailed userInfo:nil]);
                 }
             }
-            
+//    //将新生成的JS文件的MD5值进行RSA加密
+//    NSString *md5File = [self fileMD5:scriptZipFilePath];
+//    md5File = [md5File stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+//    BBRSACryptor *cryptor = [[BBRSACryptor alloc] init];
+//    [cryptor importRSAPrivateKeyBase64:privateKey];
+//    NSData *data = [cryptor encryptWithPrivateKeyUsingPadding:RSA_PKCS1_PADDING
+//                                                            plainData:[md5File dataUsingEncoding:NSUTF8StringEncoding]];
+//    NSString *rasEncryptString = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+//    NSLog(@"rsa string is %@",rasEncryptString);
             // 2. decrypt and verify md5 file
             if (!isFailed) {
-                NSData *md5Data = [RSAObject decryptData:[NSData dataWithContentsOfFile:keyFilePath] publicKey:publicKey];
-                NSString *decryptMD5 = [[NSString alloc] initWithData:md5Data encoding:NSUTF8StringEncoding];
-                NSString *md5 = [self fileMD5:scriptZipFilePath];
-                if (![decryptMD5 isEqualToString:md5]) {
-                    if (JPLogger) JPLogger([NSString stringWithFormat:@"JSPatch: decompress error, md5 didn't match, decrypt:%@ md5:%@", decryptMD5, md5]);
+                //解密MD5值
+                NSError *error = nil;
+                NSString *keyString = [NSString stringWithContentsOfFile:keyFilePath
+                                                                encoding:NSUTF8StringEncoding error:&error];
+                if (error) {
                     isFailed = YES;
-                    
                     if (callback) {
                         callback([NSError errorWithDomain:@"org.jspatch" code:JPUpdateErrorVerifyFailed userInfo:nil]);
                     }
                 }
+                else {
+                    BBRSACryptor *cryptor = [[BBRSACryptor alloc] init];
+                    [cryptor importRSAPublicKeyBase64:publicKey];
+                    NSData *encryptData = [[NSData alloc] initWithBase64EncodedString:keyString options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                    NSData *rasEncry = [cryptor decryptWithPublicKeyUsingPadding:RSA_PKCS1_PADDING cipherData:encryptData];
+                    NSString *decryptMD5 = [[NSString alloc] initWithData:rasEncry encoding:NSUTF8StringEncoding];
+                    decryptMD5 = [decryptMD5 safeSubStringToIndex:32];
+                    NSString *md5 = [self fileMD5:scriptZipFilePath];
+                    md5 = [md5 stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                    //验证两个MD5值是否相等
+                    if (![decryptMD5 isEqualToString:md5]) {
+                        if (JPLogger) {
+                            JPLogger([NSString stringWithFormat:@"JSPatch: decompress error, md5 didn't match, decrypt:%@ md5:%@", decryptMD5, md5]);
+                        }
+                        isFailed = YES;
+                        if (callback) {
+                            callback([NSError errorWithDomain:@"org.jspatch" code:JPUpdateErrorVerifyFailed userInfo:nil]);
+                        }
+                    }
+                }
             }
-            
             // 3. unzip script file and save
             if (!isFailed) {
                 ZipArchive *zipArchive = [[ZipArchive alloc] init];
@@ -165,40 +186,37 @@ void (^JPLogger)(NSString *log);
                     for (NSString *filePath in zipArchive.unzippedFiles) {
                         NSString *filename = [filePath lastPathComponent];
                         if ([[filename pathExtension] isEqualToString:@"js"]) {
-                            [[NSFileManager defaultManager] createDirectoryAtPath:scriptDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+                            [[NSFileManager defaultManager] createDirectoryAtPath:scriptDirectory
+                                                      withIntermediateDirectories:YES attributes:nil error:nil];
                             NSString *newFilePath = [scriptDirectory stringByAppendingPathComponent:filename];
                             [[NSData dataWithContentsOfFile:filePath] writeToFile:newFilePath atomically:YES];
                         }
                     }
                 }
-                else
-                {
+                else {
                     if (JPLogger) JPLogger(@"JSPatch: fail to unzip script file");
                     isFailed = YES;
-                    
                     if (callback) {
                         callback([NSError errorWithDomain:@"org.jspatch" code:JPUpdateErrorUnzipFailed userInfo:nil]);
                     }
                 }
             }
-            
             // success
             if (!isFailed) {
                 if (JPLogger) JPLogger([NSString stringWithFormat:@"JSPatch: updateToVersion: %@ success", @(version)]);
-                
                 [[NSUserDefaults standardUserDefaults] setInteger:version forKey:kJSPatchVersion(appVersion)];
                 [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                if (callback) callback(nil);
+                if (callback) {
+                   callback(nil);
+                }
             }
-            
             // clear temporary files
             [[NSFileManager defaultManager] removeItemAtPath:downloadTmpPath error:nil];
             [[NSFileManager defaultManager] removeItemAtPath:unzipVerifyDirectory error:nil];
             [[NSFileManager defaultManager] removeItemAtPath:unzipTmpDirectory error:nil];
-        } else {
+        }
+        else {
             if (JPLogger) JPLogger([NSString stringWithFormat:@"JSPatch: request error %@", error]);
-            
             if (callback) callback(error);
         }
     }];
@@ -234,8 +252,21 @@ void (^JPLogger)(NSString *log);
     return scriptDirectory;
 }
 
-#pragma mark utils
++ (NSString *)fetchVersionScriptDirectory
+{
+    NSString *libraryDirectory = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *scriptDirectory = [libraryDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"JSPatch"]];
+    return scriptDirectory;
+}
 
+#pragma mark utils
+/**
+ *  验证下载下来的文件的MD5值是否正确
+ *
+ *  @param filePath 文件路径
+ *
+ *  @return 获取的文件的MD5
+ */
 + (NSString *)fileMD5:(NSString *)filePath
 {
     NSFileHandle *handle = [NSFileHandle fileHandleForReadingAtPath:filePath];

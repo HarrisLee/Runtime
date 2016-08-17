@@ -42,7 +42,7 @@ defineClass('ViewController : UIViewController <UIAlertViewDelegate>' ,{
 //                           slf.navigationController().pushViewController_animated(tables,YES);
 //                           })
             
-            //使用 UIKit的变量  需要先通过require声明
+            //使用 Objective-C中的对象类型  需要先通过require声明
             var redView = require('UIView').alloc().init();
             var color = require('UIColor').redColor();
             redView.setBackgroundColor(color);

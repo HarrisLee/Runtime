@@ -48,7 +48,6 @@
 		4437E59D1D2B9EBE00A653FE /* JPCleaner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4437E5681D2B9EBE00A653FE /* JPCleaner.m */; };
 		4437E59E1D2B9EBE00A653FE /* JPLocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4437E56A1D2B9EBE00A653FE /* JPLocker.m */; };
 		4437E59F1D2B9EBE00A653FE /* JPSpecialInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4437E56C1D2B9EBE00A653FE /* JPSpecialInit.m */; };
-		4437E5A01D2B9EBE00A653FE /* JPLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4437E56F1D2B9EBE00A653FE /* JPLoader.m */; };
 		4437E5A11D2B9EBE00A653FE /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 4437E5731D2B9EBE00A653FE /* ioapi.c */; };
 		4437E5A21D2B9EBE00A653FE /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 4437E5751D2B9EBE00A653FE /* mztools.c */; };
 		4437E5A31D2B9EBE00A653FE /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 4437E5771D2B9EBE00A653FE /* unzip.c */; };
@@ -58,6 +57,7 @@
 		4437E5A71D2B9EBE00A653FE /* packer.php in Resources */ = {isa = PBXBuildFile; fileRef = 4437E5801D2B9EBE00A653FE /* packer.php */; };
 		4437E5AC1D2BA36500A653FE /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4437E5A81D2B9F0100A653FE /* libz.1.tbd */; };
 		4437E5AE1D2BB59E00A653FE /* aboutIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4437E5AD1D2BB59E00A653FE /* aboutIcon@3x.png */; };
+		4442923E1D63F01700C4440C /* JPLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4442923D1D63F01700C4440C /* JPLoader.m */; };
 		445078DA1D2608A20004B7CC /* JSDemo.js in Resources */ = {isa = PBXBuildFile; fileRef = 445078D91D2608A20004B7CC /* JSDemo.js */; };
 		445EB67C1D499D35000F93BD /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 445EB67B1D499D35000F93BD /* main.js */; };
 		445EB6801D49B303000F93BD /* key in Resources */ = {isa = PBXBuildFile; fileRef = 445EB67F1D49B303000F93BD /* key */; };
@@ -161,8 +161,6 @@
 		4437E56A1D2B9EBE00A653FE /* JPLocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLocker.m; sourceTree = "<group>"; };
 		4437E56B1D2B9EBE00A653FE /* JPSpecialInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSpecialInit.h; sourceTree = "<group>"; };
 		4437E56C1D2B9EBE00A653FE /* JPSpecialInit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPSpecialInit.m; sourceTree = "<group>"; };
-		4437E56E1D2B9EBE00A653FE /* JPLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLoader.h; sourceTree = "<group>"; };
-		4437E56F1D2B9EBE00A653FE /* JPLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLoader.m; sourceTree = "<group>"; };
 		4437E5721D2B9EBE00A653FE /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		4437E5731D2B9EBE00A653FE /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		4437E5741D2B9EBE00A653FE /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -180,6 +178,8 @@
 		4437E5A81D2B9F0100A653FE /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
 		4437E5AA1D2BA35100A653FE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		4437E5AD1D2BB59E00A653FE /* aboutIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aboutIcon@3x.png"; sourceTree = "<group>"; };
+		4442923C1D63F01700C4440C /* JPLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPLoader.h; sourceTree = "<group>"; };
+		4442923D1D63F01700C4440C /* JPLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPLoader.m; sourceTree = "<group>"; };
 		445078D91D2608A20004B7CC /* JSDemo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = JSDemo.js; sourceTree = "<group>"; };
 		445EB67B1D499D35000F93BD /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		445EB67F1D49B303000F93BD /* key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = key; sourceTree = "<group>"; };
@@ -539,8 +539,8 @@
 		4437E56D1D2B9EBE00A653FE /* Loader */ = {
 			isa = PBXGroup;
 			children = (
-				4437E56E1D2B9EBE00A653FE /* JPLoader.h */,
-				4437E56F1D2B9EBE00A653FE /* JPLoader.m */,
+				4442923C1D63F01700C4440C /* JPLoader.h */,
+				4442923D1D63F01700C4440C /* JPLoader.m */,
 				4437E5701D2B9EBE00A653FE /* libs */,
 				4437E57F1D2B9EBE00A653FE /* tools */,
 			);
@@ -837,7 +837,6 @@
 				4437E5941D2B9EBE00A653FE /* JPCGGeometry.m in Sources */,
 				4437E59C1D2B9EBE00A653FE /* JPUIKit.m in Sources */,
 				4437E5921D2B9EBE00A653FE /* JPCGColor.m in Sources */,
-				4437E5A01D2B9EBE00A653FE /* JPLoader.m in Sources */,
 				4437E5901D2B9EBE00A653FE /* win32_i386.S in Sources */,
 				44C1CD3F1D2F865B003FEE07 /* View+MASAdditions.m in Sources */,
 				4437E58D1D2B9EBE00A653FE /* darwin_i386.S in Sources */,
@@ -861,6 +860,7 @@
 				4437E5881D2B9EBE00A653FE /* trampoline_armv7.S in Sources */,
 				4437E5841D2B9EBE00A653FE /* ffi_arm64.c in Sources */,
 				4437E5831D2B9EBE00A653FE /* JPStructPointer.m in Sources */,
+				4442923E1D63F01700C4440C /* JPLoader.m in Sources */,
 				4437E5A21D2B9EBE00A653FE /* mztools.c in Sources */,
 				44233E4D1D24CAA000732354 /* AppDelegate.m in Sources */,
 				4437E5971D2B9EBE00A653FE /* JPCGTransform.m in Sources */,
