@@ -12,4 +12,6 @@
 
 @property (nonatomic, assign) NSInteger age;
 
+@property (nonatomic, assign) NSInteger height;
+
 @end

@@ -105,12 +105,15 @@
     NSMutableArray *persons = [[NSMutableArray alloc] init];
     for (int i = 0; i < 10; i++) {
         Person *person = [[Person alloc] init];
+        [person addObserver:self forKeyPath:@"height" options:NSKeyValueObservingOptionNew context:nil];
         person.age = rand()%100;
         [persons addObject:person];
+        [person removeObserver:self forKeyPath:@"height"];
     }
     
     NSLog(@"%@",[array valueForKeyPath:@"@max.self"]);
     NSLog(@"%@",[persons valueForKeyPath:@"@max.age"]);
+    
     
     NSString *html = @"压缩包解压,文件夹拖放到你的工程的根目录下与XXXX.xcworkspace同级即可<font color=\"red\" size=5>注意,只是修改,</font><img src=\"http://cdn-qn0.jianshu.io/assets/app-page/download-app-qrcode-053849fa25f9b44573ef8dd3c118a20f.png\" alt=\"Download app qrcode\" />";
     
@@ -123,15 +126,20 @@
     [self.view addSubview:label];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    NSLog(@"%@",keyPath);
+    
+    NSLog(@"%@----%@",object,[change valueForKey:NSKeyValueChangeNewKey]);
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
-+ (NSSet *)keyPathsForValuesAffectingName
-{
-    return [NSSet setWithObject:@"name"];
-}
 
 @end
