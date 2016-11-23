@@ -73,6 +73,7 @@ void showHello(NSString *msg)
     
     UIView *views = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     views.backgroundColor = [UIColor brownColor];
+    views.tag = 1000;
     [self.view addSubview:views];
     [views mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(slf.view.mas_left);

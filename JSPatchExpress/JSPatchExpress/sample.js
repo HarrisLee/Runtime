@@ -21,6 +21,10 @@ defineClass('ViewController : UIViewController <UIAlertViewDelegate>' ,{
 //            require('JPEngine').defineStruct({
 //            "name":"JSPDemo","types":"Fl","keys":["Js","Demo"]
 //            });
+//            
+//            var ssView = self.view().viewWithTag(1000);
+//            ssView.setBackgroundColor(require('UIColor').redColor());
+            
             
 
             var str = self.passS({Jsp:1.0,Demo:10});

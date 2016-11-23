@@ -22,8 +22,6 @@ defineClass('JPTableViewController : UITableViewController', ['data'], {
             var imgView = require('UIImageView').alloc().initWithFrame({x:150,y:69,width:200,height:200});
             self.view().addSubview(imgView);
             imgView.setImage(require('UIImage').imageNamed('aboutIcon'));
-            
-            
             },
             dataa: function() {
             var data = self.data();

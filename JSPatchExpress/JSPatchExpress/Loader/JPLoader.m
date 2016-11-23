@@ -91,7 +91,7 @@ void (^JPLogger)(NSString *log);
     
     // create url request
     NSString *downloadKey = [NSString stringWithFormat:@"/%@/v%@.zip", appVersion, @(version)];
-    NSURL *downloadURL = [NSURL URLWithString:[rootUrl safeStringByAppendingString:downloadKey]];
+    NSURL *downloadURL = [NSURL URLWithString:[rootUrl stringByAppendingString:downloadKey]];
     NSURLRequest *request = [NSURLRequest requestWithURL:downloadURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60.0];
 
     if (JPLogger) JPLogger([NSString stringWithFormat:@"JSPatch: request file %@", downloadURL]);
@@ -162,7 +162,7 @@ void (^JPLogger)(NSString *log);
                     NSData *encryptData = [[NSData alloc] initWithBase64EncodedString:keyString options:NSDataBase64DecodingIgnoreUnknownCharacters];
                     NSData *rasEncry = [cryptor decryptWithPublicKeyUsingPadding:RSA_PKCS1_PADDING cipherData:encryptData];
                     NSString *decryptMD5 = [[NSString alloc] initWithData:rasEncry encoding:NSUTF8StringEncoding];
-                    decryptMD5 = [decryptMD5 safeSubStringToIndex:32];
+                    decryptMD5 = [decryptMD5 substringToIndex:32];
                     NSString *md5 = [self fileMD5:scriptZipFilePath];
                     md5 = [md5 stringByReplacingOccurrencesOfString:@"\n" withString:@""];
                     //验证两个MD5值是否相等
